@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exposición: Azure, AWS y Hyper-V</title>
+    <title>Cloud Platforms: Azure, AWS & Hyper-V</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Variables de colores y estilos */
         :root {
             --primary-color: #2c3e50;
             --secondary-color: #3498db;
@@ -14,11 +14,11 @@
             --hyperv-color: #68217a;
             --light-color: #ecf0f1;
             --dark-color: #2c3e50;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
+            --gradient: linear-gradient(135deg, #3498db, #2c3e50);
         }
 
-        /* Estilos generales */
         * {
             margin: 0;
             padding: 0;
@@ -27,9 +27,10 @@
         }
 
         body {
-            background-color: #f5f7fa;
+            background-color: #f8f9fa;
             color: var(--dark-color);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         .container {
@@ -38,108 +39,205 @@
             padding: 20px;
         }
 
-        /* Encabezado */
+        /* Header */
         header {
-            text-align: center;
-            padding: 40px 0;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: var(--gradient);
             color: white;
-            border-radius: 0 0 20px 20px;
+            padding: 30px 0;
+            border-radius: 0 0 30px 30px;
             box-shadow: var(--shadow);
-            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
         }
 
         header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 700;
         }
 
         header p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             max-width: 800px;
-            margin: 0 auto;
+            margin: 0 auto 25px;
+            opacity: 0.9;
         }
 
-        /* Sección de introducción */
+        .language-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 8px 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            padding: 5px 10px;
+            border-radius: 15px;
+            transition: var(--transition);
+        }
+
+        .lang-btn.active {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Introduction */
         .intro {
             text-align: center;
-            margin-bottom: 50px;
-            padding: 30px;
-            background-color: white;
-            border-radius: 15px;
+            margin: 60px 0;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
             box-shadow: var(--shadow);
+            position: relative;
         }
 
         .intro h2 {
             color: var(--primary-color);
-            margin-bottom: 20px;
-            font-size: 2rem;
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .intro h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 2px;
         }
 
         .intro p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             max-width: 900px;
             margin: 0 auto;
+            color: #555;
         }
 
-        /* Tarjetas de servicios */
+        /* Services Grid */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
         .service-card {
-            background-color: white;
-            border-radius: 15px;
+            background: white;
+            border-radius: 20px;
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-15px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
 
         .card-header {
-            padding: 20px;
+            padding: 25px;
             color: white;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1);
         }
 
         .azure .card-header {
-            background-color: var(--azure-color);
+            background: linear-gradient(135deg, var(--azure-color), #004578);
         }
 
         .aws .card-header {
-            background-color: var(--aws-color);
+            background: linear-gradient(135deg, var(--aws-color), #cc7a00);
         }
 
         .hyperv .card-header {
-            background-color: var(--hyperv-color);
+            background: linear-gradient(135deg, var(--hyperv-color), #501a6c);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
         }
 
         .card-header h3 {
             font-size: 1.8rem;
             margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
         }
 
         .card-body {
             padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .card-body ul {
             list-style-type: none;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            flex-grow: 1;
         }
 
         .card-body li {
-            padding: 8px 0;
+            padding: 12px 0;
             border-bottom: 1px solid #eee;
             position: relative;
-            padding-left: 25px;
+            padding-left: 35px;
+            font-size: 1.05rem;
         }
 
         .card-body li:before {
@@ -148,84 +246,205 @@
             left: 0;
             color: var(--secondary-color);
             font-weight: bold;
+            font-size: 1.2rem;
         }
 
         .card-footer {
-            padding: 15px 25px 25px;
+            padding: 0 25px 25px;
             text-align: center;
         }
 
         .btn {
             display: inline-block;
-            padding: 10px 20px;
-            background-color: var(--secondary-color);
+            padding: 12px 25px;
+            background: var(--secondary-color);
             color: white;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 8px;
             transition: var(--transition);
-            font-weight: bold;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
         }
 
         .btn:hover {
-            background-color: var(--primary-color);
+            background: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
-        /* Comparativa */
+        .azure-btn {
+            background: var(--azure-color);
+        }
+
+        .aws-btn {
+            background: var(--aws-color);
+        }
+
+        .hyperv-btn {
+            background: var(--hyperv-color);
+        }
+
+        /* Comparison */
         .comparison {
-            background-color: white;
-            border-radius: 15px;
-            padding: 30px;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
             box-shadow: var(--shadow);
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
         .comparison h2 {
             text-align: center;
             color: var(--primary-color);
-            margin-bottom: 30px;
-            font-size: 2rem;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .comparison h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 2px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
         }
 
         th, td {
-            padding: 15px;
+            padding: 18px 15px;
             text-align: left;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #e0e0e0;
         }
 
         th {
             background-color: var(--light-color);
-            font-weight: bold;
+            font-weight: 700;
+            color: var(--primary-color);
         }
 
         tr:hover {
             background-color: #f9f9f9;
         }
 
-        .azure-row {
+        .azure-row td:first-child {
             border-left: 4px solid var(--azure-color);
         }
 
-        .aws-row {
+        .aws-row td:first-child {
             border-left: 4px solid var(--aws-color);
         }
 
-        .hyperv-row {
+        .hyperv-row td:first-child {
             border-left: 4px solid var(--hyperv-color);
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 30px 0;
-            background-color: var(--primary-color);
+            padding: 40px 0;
+            background: var(--gradient);
             color: white;
-            border-radius: 20px 20px 0 0;
-            margin-top: 50px;
+            border-radius: 30px 30px 0 0;
+            margin-top: 60px;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .footer-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .footer-icons i {
+            font-size: 1.5rem;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .footer-icons i:hover {
+            opacity: 1;
+            transform: translateY(-3px);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .modal-header {
+            padding: 25px 30px 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #777;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: var(--primary-color);
+        }
+
+        .modal-body {
+            padding: 25px 30px;
+        }
+
+        .modal-body p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.7;
         }
 
         /* Responsive */
@@ -235,11 +454,19 @@
             }
             
             header h1 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
             
             .intro h2, .comparison h2 {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
+            }
+            
+            .language-toggle {
+                position: relative;
+                top: 0;
+                right: 0;
+                justify-content: center;
+                margin-top: 15px;
             }
         }
     </style>
@@ -247,120 +474,130 @@
 <body>
     <header>
         <div class="container">
-            <h1>Plataformas de Virtualización y Nube</h1>
-            <p>Una comparativa entre Microsoft Azure, Amazon Web Services y Hyper-V</p>
+            <div class="header-content">
+                <h1>Cloud Platforms: Azure, AWS & Hyper-V</h1>
+                <p>An in-depth comparison of leading virtualization and cloud solutions</p>
+                
+                <div class="language-toggle">
+                    <button class="lang-btn active" id="btn-en">EN</button>
+                    <button class="lang-btn" id="btn-es">ES</button>
+                </div>
+            </div>
         </div>
     </header>
 
     <div class="container">
         <section class="intro">
-            <h2>Introducción</h2>
-            <p>En la era digital actual, las soluciones de virtualización y computación en la nube se han convertido en pilares fundamentales para la transformación digital de las empresas. Esta exposición analiza tres de las plataformas más relevantes en el mercado: Azure, AWS y Hyper-V.</p>
+            <h2 id="intro-title">Introduction</h2>
+            <p id="intro-text">In today's digital era, virtualization and cloud computing solutions have become fundamental pillars for the digital transformation of businesses. This presentation analyzes three of the most relevant platforms in the market: Azure, AWS, and Hyper-V.</p>
         </section>
 
         <section class="services-grid">
-            <!-- Tarjeta Azure -->
+            <!-- Azure Card -->
             <div class="service-card azure">
                 <div class="card-header">
+                    <i class="card-icon fas fa-cloud"></i>
                     <h3>Microsoft Azure</h3>
-                    <p>Plataforma de nube de Microsoft</p>
+                    <p>Microsoft's Cloud Platform</p>
                 </div>
                 <div class="card-body">
                     <ul>
-                        <li>Servicios de computación escalables</li>
-                        <li>Almacenamiento en la nube seguro</li>
-                        <li>Inteligencia Artificial y Machine Learning</li>
-                        <li>Integración con herramientas Microsoft</li>
-                        <li>Soluciones híbridas</li>
+                        <li id="azure-feature-1">Scalable computing services</li>
+                        <li id="azure-feature-2">Secure cloud storage</li>
+                        <li id="azure-feature-3">AI and Machine Learning</li>
+                        <li id="azure-feature-4">Integration with Microsoft tools</li>
+                        <li id="azure-feature-5">Hybrid solutions</li>
                     </ul>
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="btn" onclick="showDetails('azure')">Ver más detalles</a>
+                    <button class="btn azure-btn" onclick="showDetails('azure')">View Details</button>
                 </div>
             </div>
 
-            <!-- Tarjeta AWS -->
+            <!-- AWS Card -->
             <div class="service-card aws">
                 <div class="card-header">
+                    <i class="card-icon fas fa-bolt"></i>
                     <h3>Amazon Web Services</h3>
-                    <p>Plataforma de nube de Amazon</p>
+                    <p>Amazon's Cloud Platform</p>
                 </div>
                 <div class="card-body">
                     <ul>
-                        <li>Amplia gama de servicios</li>
-                        <li>Alta disponibilidad y escalabilidad</li>
-                        <li>Modelo de precios flexible</li>
-                        <li>Ecosistema maduro y documentación extensa</li>
-                        <li>Liderazgo en el mercado IaaS</li>
+                        <li id="aws-feature-1">Wide range of services</li>
+                        <li id="aws-feature-2">High availability and scalability</li>
+                        <li id="aws-feature-3">Flexible pricing model</li>
+                        <li id="aws-feature-4">Mature ecosystem and extensive documentation</li>
+                        <li id="aws-feature-5">IaaS market leadership</li>
                     </ul>
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="btn" onclick="showDetails('aws')">Ver más detalles</a>
+                    <button class="btn aws-btn" onclick="showDetails('aws')">View Details</button>
                 </div>
             </div>
 
-            <!-- Tarjeta Hyper-V -->
+            <!-- Hyper-V Card -->
             <div class="service-card hyperv">
                 <div class="card-header">
+                    <i class="card-icon fas fa-server"></i>
                     <h3>Hyper-V</h3>
-                    <p>Hypervisor de Microsoft</p>
+                    <p>Microsoft's Hypervisor</p>
                 </div>
                 <div class="card-body">
                     <ul>
-                        <li>Virtualización de servidores</li>
-                        <li>Integrado en Windows Server</li>
-                        <li>Gestión centralizada con System Center</li>
-                        <li>Replica y migración en vivo</li>
-                        <li>Compatibilidad con Linux y Windows</li>
+                        <li id="hyperv-feature-1">Server virtualization</li>
+                        <li id="hyperv-feature-2">Integrated with Windows Server</li>
+                        <li id="hyperv-feature-3">Centralized management with System Center</li>
+                        <li id="hyperv-feature-4">Live replication and migration</li>
+                        <li id="hyperv-feature-5">Linux and Windows compatibility</li>
                     </ul>
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="btn" onclick="showDetails('hyperv')">Ver más detalles</a>
+                    <button class="btn hyperv-btn" onclick="showDetails('hyperv')">View Details</button>
                 </div>
             </div>
         </section>
 
         <section class="comparison">
-            <h2>Comparativa de Plataformas</h2>
+            <h2 id="comparison-title">Platform Comparison</h2>
             <table>
                 <thead>
                     <tr>
-                        <th>Característica</th>
-                        <th>Azure</th>
-                        <th>AWS</th>
-                        <th>Hyper-V</th>
+                        <th id="feature-header">Feature</th>
+                        <th id="azure-header">Azure</th>
+                        <th id="aws-header">AWS</th>
+                        <th id="hyperv-header">Hyper-V</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="azure-row">
-                        <td>Tipo de servicio</td>
-                        <td>Nube pública/híbrida</td>
-                        <td>Nube pública</td>
-                        <td>Virtualización local</td>
+                        <td id="service-type">Service Type</td>
+                        <td id="azure-service-type">Public/Hybrid Cloud</td>
+                        <td id="aws-service-type">Public Cloud</td>
+                        <td id="hyperv-service-type">On-premises Virtualization</td>
                     </tr>
                     <tr class="aws-row">
-                        <td>Modelo de precios</td>
-                        <td>Pago por uso</td>
-                        <td>Pago por uso</td>
-                        <td>Licencias por servidor</td>
+                        <td id="pricing-model">Pricing Model</td>
+                        <td id="azure-pricing">Pay-as-you-go</td>
+                        <td id="aws-pricing">Pay-as-you-go</td>
+                        <td id="hyperv-pricing">Per-server licensing</td>
                     </tr>
                     <tr class="hyperv-row">
-                        <td>Escalabilidad</td>
-                        <td>Alta</td>
-                        <td>Alta</td>
-                        <td>Media (depende del hardware)</td>
+                        <td id="scalability">Scalability</td>
+                        <td id="azure-scalability">High</td>
+                        <td id="aws-scalability">High</td>
+                        <td id="hyperv-scalability">Medium (hardware dependent)</td>
                     </tr>
                     <tr class="azure-row">
-                        <td>Integración con ecosistema</td>
-                        <td>Excelente con Microsoft</td>
-                        <td>Amplia con servicios AWS</td>
-                        <td>Excelente con Windows</td>
+                        <td id="ecosystem">Ecosystem Integration</td>
+                        <td id="azure-ecosystem">Excellent with Microsoft</td>
+                        <td id="aws-ecosystem">Broad with AWS services</td>
+                        <td id="hyperv-ecosystem">Excellent with Windows</td>
                     </tr>
                     <tr class="aws-row">
-                        <td>Casos de uso principales</td>
-                        <td>Empresas Microsoft, soluciones híbridas</td>
-                        <td>Startups, empresas tecnológicas</td>
-                        <td>Virtualización en entornos Windows</td>
+                        <td id="use-cases">Primary Use Cases</td>
+                        <td id="azure-use-cases">Microsoft enterprises, hybrid solutions</td>
+                        <td id="aws-use-cases">Startups, tech companies</td>
+                        <td id="hyperv-use-cases">Virtualization in Windows environments</td>
                     </tr>
                 </tbody>
             </table>
@@ -369,45 +606,294 @@
 
     <footer>
         <div class="container">
-            <p>Material de apoyo para exposición - Plataformas de Virtualización y Nube</p>
+            <p id="footer-text">Support material for presentation - Virtualization and Cloud Platforms</p>
             <p>Azure | AWS | Hyper-V</p>
+            <div class="footer-icons">
+                <i class="fab fa-microsoft"></i>
+                <i class="fab fa-aws"></i>
+                <i class="fas fa-cloud"></i>
+                <i class="fas fa-server"></i>
+            </div>
         </div>
     </footer>
 
+    <!-- Modal for AWS -->
+    <div class="modal" id="aws-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Amazon Web Services (AWS)</h3>
+                <button class="close-modal" onclick="closeModal('aws-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="aws-content">Hello everyone. Thank you for being here. Today, I'm excited to talk to you about a revolution in the tech world: Amazon Web Services, or AWS. So, what exactly is AWS? In simple terms, it's the world's most comprehensive and widely adopted cloud platform.</p>
+                <p>AWS offers over 200 services, including powerful computing, secure data storage, and advanced machine learning. And the best part? You only pay for what you use. This is why millions of customers trust AWS, from the fastest-growing startups to the largest enterprises. Companies like Netflix rely on AWS to stream your favorite movies. Airbnb uses it to connect hosts and guests globally. Even NASA uses AWS to process its vast amount of data.</p>
+                <p>Let me explain it with a simple analogy. Imagine you need electricity for your home. You have two options. Option one: build your own power plant. That is expensive, complex, and requires constant maintenance. Option two: just pay the electric company for the power you use. It's simple, scalable, and cost-effective. AWS is like that electric company, but for computing power. Instead of companies building their own data centers, they can use AWS on demand.</p>
+                <p>So, in conclusion, AWS provides the scalable, reliable, and affordable building blocks that businesses need to innovate and grow in today's world. It's not just technology; it's a strategic advantage. Thank you for your attention.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Azure -->
+    <div class="modal" id="azure-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Microsoft Azure</h3>
+                <button class="close-modal" onclick="closeModal('azure-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="azure-content">Microsoft Azure is a cloud services platform that offers a variety of solutions and tools to develop, deploy, and manage applications and services through a global network of data centers.</p>
+                <h4>Main Features of Microsoft Azure</h4>
+                <p><strong>Cloud Computing:</strong> Virtual Machines allow creating and managing virtual machines in different operating systems. Azure Functions offers a serverless computing model to run code in response to events.</p>
+                <p><strong>Storage:</strong> Azure Blob Storage provides object storage for unstructured data. Azure SQL Database is a cloud-based relational database service.</p>
+                <p><strong>Networking:</strong> Azure Virtual Network enables creating secure virtual networks. Azure CDN is a content delivery network to improve application distribution.</p>
+                <p><strong>Analytics and Big Data:</strong> Azure Synapse Analytics is an analytics platform that combines data storage and analysis. Azure Databricks is an analytics environment based on Apache Spark.</p>
+                <p><strong>Artificial Intelligence and Machine Learning:</strong> Azure Machine Learning provides tools to build, train, and deploy machine learning models. Cognitive Services are APIs that allow adding AI capabilities to applications.</p>
+                <p><strong>Security and Management:</strong> Azure Active Directory is an identity and access management service. Azure Security Center is a tool to manage the security of cloud resources.</p>
+                <h4>Advantages of Using Microsoft Azure</h4>
+                <p><strong>Scalability:</strong> Allows scaling resources up or down according to needs.</p>
+                <p><strong>Flexibility:</strong> Supports multiple programming languages and frameworks.</p>
+                <p><strong>Global:</strong> Has an extensive network of data centers worldwide, enabling low-latency application deployment.</p>
+                <p><strong>Integration:</strong> Easily integrates with other Microsoft services and third-party tools.</p>
+                <h4>Use Cases</h4>
+                <p><strong>Application Development:</strong> Create and deploy applications in the cloud.</p>
+                <p><strong>Infrastructure Migration:</strong> Move applications and data from on-premises servers to the cloud.</p>
+                <p><strong>Data Analysis:</strong> Process and analyze large volumes of data to gain valuable insights.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Hyper-V -->
+    <div class="modal" id="hyperv-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Hyper-V</h3>
+                <button class="close-modal" onclick="closeModal('hyperv-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="hyperv-content">Hyper-V is Microsoft's hardware virtualization technology. It allows you to create and run a software version of a computer, called a virtual machine. Each virtual machine acts like a complete computer, running an operating system and programs.</p>
+                <h4>Key Features of Hyper-V</h4>
+                <p><strong>Server Virtualization:</strong> Hyper-V enables server consolidation by running multiple virtual machines on a single physical server.</p>
+                <p><strong>Integration with Windows Server:</strong> Hyper-V is integrated into Windows Server, making it easy to deploy and manage.</p>
+                <p><strong>Centralized Management:</strong> Use System Center Virtual Machine Manager for centralized management of your virtual infrastructure.</p>
+                <p><strong>Live Migration:</strong> Move running virtual machines from one Hyper-V host to another without downtime.</p>
+                <p><strong>Replication:</strong> Hyper-V Replica provides asynchronous replication of virtual machines for business continuity and disaster recovery.</p>
+                <p><strong>Compatibility:</strong> Supports both Windows and Linux guest operating systems.</p>
+                <h4>Benefits of Hyper-V</h4>
+                <p><strong>Cost-Effective:</strong> Since it's included with Windows Server, there are no additional licensing costs for the hypervisor.</p>
+                <p><strong>Performance:</strong> Provides near-native performance for virtual machines.</p>
+                <p><strong>Security:</strong> Includes features like Shielded Virtual Machines to protect against unauthorized access.</p>
+                <p><strong>Disaster Recovery:</strong> Built-in replication and backup capabilities enhance business continuity.</p>
+                <h4>Use Cases</h4>
+                <p><strong>Server Consolidation:</strong> Reduce physical server count by virtualizing workloads.</p>
+                <p><strong>Development and Testing:</strong> Create isolated environments for development and testing.</p>
+                <p><strong>Disaster Recovery:</strong> Implement cost-effective disaster recovery solutions.</p>
+                <p><strong>Hybrid Cloud:</strong> Use in conjunction with Azure for hybrid cloud scenarios.</p>
+            </div>
+        </div>
+    </div>
+
     <script>
-        function showDetails(platform) {
-            let message = "";
+        // Language data
+        const languageData = {
+            en: {
+                // Header
+                'title': 'Cloud Platforms: Azure, AWS & Hyper-V',
+                'subtitle': 'An in-depth comparison of leading virtualization and cloud solutions',
+                
+                // Introduction
+                'intro-title': 'Introduction',
+                'intro-text': 'In today\'s digital era, virtualization and cloud computing solutions have become fundamental pillars for the digital transformation of businesses. This presentation analyzes three of the most relevant platforms in the market: Azure, AWS, and Hyper-V.',
+                
+                // Azure features
+                'azure-feature-1': 'Scalable computing services',
+                'azure-feature-2': 'Secure cloud storage',
+                'azure-feature-3': 'AI and Machine Learning',
+                'azure-feature-4': 'Integration with Microsoft tools',
+                'azure-feature-5': 'Hybrid solutions',
+                
+                // AWS features
+                'aws-feature-1': 'Wide range of services',
+                'aws-feature-2': 'High availability and scalability',
+                'aws-feature-3': 'Flexible pricing model',
+                'aws-feature-4': 'Mature ecosystem and extensive documentation',
+                'aws-feature-5': 'IaaS market leadership',
+                
+                // Hyper-V features
+                'hyperv-feature-1': 'Server virtualization',
+                'hyperv-feature-2': 'Integrated with Windows Server',
+                'hyperv-feature-3': 'Centralized management with System Center',
+                'hyperv-feature-4': 'Live replication and migration',
+                'hyperv-feature-5': 'Linux and Windows compatibility',
+                
+                // Comparison table
+                'comparison-title': 'Platform Comparison',
+                'feature-header': 'Feature',
+                'azure-header': 'Azure',
+                'aws-header': 'AWS',
+                'hyperv-header': 'Hyper-V',
+                'service-type': 'Service Type',
+                'azure-service-type': 'Public/Hybrid Cloud',
+                'aws-service-type': 'Public Cloud',
+                'hyperv-service-type': 'On-premises Virtualization',
+                'pricing-model': 'Pricing Model',
+                'azure-pricing': 'Pay-as-you-go',
+                'aws-pricing': 'Pay-as-you-go',
+                'hyperv-pricing': 'Per-server licensing',
+                'scalability': 'Scalability',
+                'azure-scalability': 'High',
+                'aws-scalability': 'High',
+                'hyperv-scalability': 'Medium (hardware dependent)',
+                'ecosystem': 'Ecosystem Integration',
+                'azure-ecosystem': 'Excellent with Microsoft',
+                'aws-ecosystem': 'Broad with AWS services',
+                'hyperv-ecosystem': 'Excellent with Windows',
+                'use-cases': 'Primary Use Cases',
+                'azure-use-cases': 'Microsoft enterprises, hybrid solutions',
+                'aws-use-cases': 'Startups, tech companies',
+                'hyperv-use-cases': 'Virtualization in Windows environments',
+                
+                // Footer
+                'footer-text': 'Support material for presentation - Virtualization and Cloud Platforms',
+                
+                // Buttons
+                'view-details': 'View Details'
+            },
+            es: {
+                // Header
+                'title': 'Plataformas en la Nube: Azure, AWS y Hyper-V',
+                'subtitle': 'Una comparativa en profundidad de las principales soluciones de virtualización y nube',
+                
+                // Introduction
+                'intro-title': 'Introducción',
+                'intro-text': 'En la era digital actual, las soluciones de virtualización y computación en la nube se han convertido en pilares fundamentales para la transformación digital de las empresas. Esta exposición analiza tres de las plataformas más relevantes en el mercado: Azure, AWS y Hyper-V.',
+                
+                // Azure features
+                'azure-feature-1': 'Servicios de computación escalables',
+                'azure-feature-2': 'Almacenamiento en la nube seguro',
+                'azure-feature-3': 'Inteligencia Artificial y Machine Learning',
+                'azure-feature-4': 'Integración con herramientas Microsoft',
+                'azure-feature-5': 'Soluciones híbridas',
+                
+                // AWS features
+                'aws-feature-1': 'Amplia gama de servicios',
+                'aws-feature-2': 'Alta disponibilidad y escalabilidad',
+                'aws-feature-3': 'Modelo de precios flexible',
+                'aws-feature-4': 'Ecosistema maduro y documentación extensa',
+                'aws-feature-5': 'Liderazgo en el mercado IaaS',
+                
+                // Hyper-V features
+                'hyperv-feature-1': 'Virtualización de servidores',
+                'hyperv-feature-2': 'Integrado en Windows Server',
+                'hyperv-feature-3': 'Gestión centralizada con System Center',
+                'hyperv-feature-4': 'Replica y migración en vivo',
+                'hyperv-feature-5': 'Compatibilidad con Linux y Windows',
+                
+                // Comparison table
+                'comparison-title': 'Comparativa de Plataformas',
+                'feature-header': 'Característica',
+                'azure-header': 'Azure',
+                'aws-header': 'AWS',
+                'hyperv-header': 'Hyper-V',
+                'service-type': 'Tipo de servicio',
+                'azure-service-type': 'Nube pública/híbrida',
+                'aws-service-type': 'Nube pública',
+                'hyperv-service-type': 'Virtualización local',
+                'pricing-model': 'Modelo de precios',
+                'azure-pricing': 'Pago por uso',
+                'aws-pricing': 'Pago por uso',
+                'hyperv-pricing': 'Licencias por servidor',
+                'scalability': 'Escalabilidad',
+                'azure-scalability': 'Alta',
+                'aws-scalability': 'Alta',
+                'hyperv-scalability': 'Media (depende del hardware)',
+                'ecosystem': 'Integración con ecosistema',
+                'azure-ecosystem': 'Excelente con Microsoft',
+                'aws-ecosystem': 'Amplia con servicios AWS',
+                'hyperv-ecosystem': 'Excelente con Windows',
+                'use-cases': 'Casos de uso principales',
+                'azure-use-cases': 'Empresas Microsoft, soluciones híbridas',
+                'aws-use-cases': 'Startups, empresas tecnológicas',
+                'hyperv-use-cases': 'Virtualización en entornos Windows',
+                
+                // Footer
+                'footer-text': 'Material de apoyo para exposición - Plataformas de Virtualización y Nube',
+                
+                // Buttons
+                'view-details': 'Ver detalles'
+            }
+        };
+
+        // Language toggle functionality
+        document.getElementById('btn-en').addEventListener('click', function() {
+            setLanguage('en');
+        });
+
+        document.getElementById('btn-es').addEventListener('click', function() {
+            setLanguage('es');
+        });
+
+        function setLanguage(lang) {
+            // Update active button
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            document.getElementById('btn-es').classList.toggle('active', lang === 'es');
             
-            switch(platform) {
-                case 'azure':
-                    message = "Microsoft Azure es la plataforma de computación en la nube de Microsoft, que ofrece una amplia gama de servicios que incluyen computación, análisis, almacenamiento y redes.";
-                    break;
-                case 'aws':
-                    message = "Amazon Web Services (AWS) es la plataforma de nube más adoptada y completa en el mundo, ofreciendo más de 200 servicios completos desde centros de datos a nivel global.";
-                    break;
-                case 'hyperv':
-                    message = "Hyper-V es la tecnología de virtualización basada en hypervisor de Microsoft. Permite crear y ejecutar una versión de software de un equipo, llamado máquina virtual.";
-                    break;
+            // Update all text elements
+            const data = languageData[lang];
+            for (const key in data) {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.textContent = data[key];
+                }
             }
             
-            alert(message);
+            // Update button texts
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                if (button.textContent.includes('View Details') || button.textContent.includes('Ver detalles')) {
+                    button.textContent = data['view-details'];
+                }
+            });
         }
 
-        // Efecto de aparición suave al cargar la página
+        // Modal functionality
+        function showDetails(platform) {
+            const modal = document.getElementById(`${platform}-modal`);
+            modal.style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+
+        // Animation on scroll
         document.addEventListener('DOMContentLoaded', function() {
             const elements = document.querySelectorAll('.service-card, .intro, .comparison');
             
-            elements.forEach((element, index) => {
-                setTimeout(() => {
-                    element.style.opacity = '0';
-                    element.style.transform = 'translateY(20px)';
-                    element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                    
-                    setTimeout(() => {
-                        element.style.opacity = '1';
-                        element.style.transform = 'translateY(0)';
-                    }, 100);
-                }, index * 200);
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            elements.forEach(element => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(30px)';
+                element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(element);
             });
         });
     </script>
