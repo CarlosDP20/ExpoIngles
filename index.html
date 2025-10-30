@@ -68,13 +68,13 @@
         }
 
         header h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 15px;
             font-weight: 700;
         }
 
         header p {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             max-width: 800px;
             margin: 0 auto 25px;
             opacity: 0.9;
@@ -120,7 +120,7 @@
         .intro h2 {
             color: var(--primary-color);
             margin-bottom: 25px;
-            font-size: 2.2rem;
+            font-size: 2rem;
             position: relative;
             display: inline-block;
         }
@@ -138,16 +138,103 @@
         }
 
         .intro p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             max-width: 900px;
             margin: 0 auto;
             color: #555;
         }
 
+        /* About Us Section */
+        .about-us {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin-bottom: 60px;
+        }
+
+        .about-us h2 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            font-size: 2rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .about-us h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        .team-members {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .member-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .member-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .member-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .member-card p {
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .member-id {
+            background: var(--secondary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
         /* Services Grid */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-bottom: 60px;
         }
@@ -165,7 +252,7 @@
         }
 
         .service-card:hover {
-            transform: translateY(-15px);
+            transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
 
@@ -200,20 +287,20 @@
         }
 
         .card-icon {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 15px;
             display: block;
         }
 
         .card-header h3 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             margin-bottom: 10px;
             position: relative;
             z-index: 1;
         }
 
         .card-header p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             opacity: 0.9;
             position: relative;
             z-index: 1;
@@ -233,11 +320,11 @@
         }
 
         .card-body li {
-            padding: 12px 0;
+            padding: 10px 0;
             border-bottom: 1px solid #eee;
             position: relative;
-            padding-left: 35px;
-            font-size: 1.05rem;
+            padding-left: 30px;
+            font-size: 1rem;
         }
 
         .card-body li:before {
@@ -246,7 +333,7 @@
             left: 0;
             color: var(--secondary-color);
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
 
         .card-footer {
@@ -293,13 +380,14 @@
             padding: 40px;
             box-shadow: var(--shadow);
             margin-bottom: 60px;
+            overflow-x: auto;
         }
 
         .comparison h2 {
             text-align: center;
             color: var(--primary-color);
             margin-bottom: 40px;
-            font-size: 2.2rem;
+            font-size: 2rem;
             position: relative;
             display: inline-block;
             left: 50%;
@@ -322,10 +410,11 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            min-width: 600px;
         }
 
         th, td {
-            padding: 18px 15px;
+            padding: 15px;
             text-align: left;
             border-bottom: 1px solid #e0e0e0;
         }
@@ -420,7 +509,7 @@
         }
 
         .modal-header h3 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: var(--primary-color);
         }
 
@@ -449,16 +538,20 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .services-grid {
+            .services-grid, .team-members {
                 grid-template-columns: 1fr;
             }
             
             header h1 {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
             
-            .intro h2, .comparison h2 {
-                font-size: 1.8rem;
+            header p {
+                font-size: 1.1rem;
+            }
+            
+            .intro h2, .comparison h2, .about-us h2 {
+                font-size: 1.6rem;
             }
             
             .language-toggle {
@@ -467,6 +560,53 @@
                 right: 0;
                 justify-content: center;
                 margin-top: 15px;
+            }
+            
+            .intro, .about-us, .comparison {
+                padding: 25px;
+            }
+            
+            .card-header {
+                padding: 20px;
+            }
+            
+            .card-body {
+                padding: 20px;
+            }
+            
+            .member-card {
+                padding: 20px;
+            }
+            
+            .modal-content {
+                width: 95%;
+            }
+            
+            .modal-header, .modal-body {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .intro h2, .comparison h2, .about-us h2 {
+                font-size: 1.4rem;
+            }
+            
+            .intro p, .card-body li {
+                font-size: 0.95rem;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .member-card h3 {
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -490,6 +630,36 @@
         <section class="intro">
             <h2 id="intro-title">Introduction</h2>
             <p id="intro-text">In today's digital era, virtualization and cloud computing solutions have become fundamental pillars for the digital transformation of businesses. This presentation analyzes three of the most relevant platforms in the market: Azure, AWS, and Hyper-V.</p>
+        </section>
+
+        <section class="about-us">
+            <h2 id="about-title">About Us</h2>
+            <div class="team-members">
+                <div class="member-card">
+                    <div class="member-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Carlos Perez</h3>
+                    <p>Cloud Solutions Specialist</p>
+                    <span class="member-id">ID: 30849284</span>
+                </div>
+                <div class="member-card">
+                    <div class="member-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Miguel Nare</h3>
+                    <p>Virtualization Expert</p>
+                    <span class="member-id">ID: 32859808</span>
+                </div>
+                <div class="member-card">
+                    <div class="member-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3>Team Member</h3>
+                    <p>Cloud Infrastructure</p>
+                    <span class="member-id">Information Pending</span>
+                </div>
+            </div>
         </section>
 
         <section class="services-grid">
@@ -559,54 +729,56 @@
 
         <section class="comparison">
             <h2 id="comparison-title">Platform Comparison</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th id="feature-header">Feature</th>
-                        <th id="azure-header">Azure</th>
-                        <th id="aws-header">AWS</th>
-                        <th id="hyperv-header">Hyper-V</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="azure-row">
-                        <td id="service-type">Service Type</td>
-                        <td id="azure-service-type">Public/Hybrid Cloud</td>
-                        <td id="aws-service-type">Public Cloud</td>
-                        <td id="hyperv-service-type">On-premises Virtualization</td>
-                    </tr>
-                    <tr class="aws-row">
-                        <td id="pricing-model">Pricing Model</td>
-                        <td id="azure-pricing">Pay-as-you-go</td>
-                        <td id="aws-pricing">Pay-as-you-go</td>
-                        <td id="hyperv-pricing">Per-server licensing</td>
-                    </tr>
-                    <tr class="hyperv-row">
-                        <td id="scalability">Scalability</td>
-                        <td id="azure-scalability">High</td>
-                        <td id="aws-scalability">High</td>
-                        <td id="hyperv-scalability">Medium (hardware dependent)</td>
-                    </tr>
-                    <tr class="azure-row">
-                        <td id="ecosystem">Ecosystem Integration</td>
-                        <td id="azure-ecosystem">Excellent with Microsoft</td>
-                        <td id="aws-ecosystem">Broad with AWS services</td>
-                        <td id="hyperv-ecosystem">Excellent with Windows</td>
-                    </tr>
-                    <tr class="aws-row">
-                        <td id="use-cases">Primary Use Cases</td>
-                        <td id="azure-use-cases">Microsoft enterprises, hybrid solutions</td>
-                        <td id="aws-use-cases">Startups, tech companies</td>
-                        <td id="hyperv-use-cases">Virtualization in Windows environments</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th id="feature-header">Feature</th>
+                            <th id="azure-header">Azure</th>
+                            <th id="aws-header">AWS</th>
+                            <th id="hyperv-header">Hyper-V</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="azure-row">
+                            <td id="service-type">Service Type</td>
+                            <td id="azure-service-type">Public/Hybrid Cloud</td>
+                            <td id="aws-service-type">Public Cloud</td>
+                            <td id="hyperv-service-type">On-premises Virtualization</td>
+                        </tr>
+                        <tr class="aws-row">
+                            <td id="pricing-model">Pricing Model</td>
+                            <td id="azure-pricing">Pay-as-you-go</td>
+                            <td id="aws-pricing">Pay-as-you-go</td>
+                            <td id="hyperv-pricing">Per-server licensing</td>
+                        </tr>
+                        <tr class="hyperv-row">
+                            <td id="scalability">Scalability</td>
+                            <td id="azure-scalability">High</td>
+                            <td id="aws-scalability">High</td>
+                            <td id="hyperv-scalability">Medium (hardware dependent)</td>
+                        </tr>
+                        <tr class="azure-row">
+                            <td id="ecosystem">Ecosystem Integration</td>
+                            <td id="azure-ecosystem">Excellent with Microsoft</td>
+                            <td id="aws-ecosystem">Broad with AWS services</td>
+                            <td id="hyperv-ecosystem">Excellent with Windows</td>
+                        </tr>
+                        <tr class="aws-row">
+                            <td id="use-cases">Primary Use Cases</td>
+                            <td id="azure-use-cases">Microsoft enterprises, hybrid solutions</td>
+                            <td id="aws-use-cases">Startups, tech companies</td>
+                            <td id="hyperv-use-cases">Virtualization in Windows environments</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
     </div>
 
     <footer>
         <div class="container">
-            <p id="footer-text">Support material for presentation - Virtualization and Cloud Platforms</p>
+            <p id="footer-text">Virtualization and Cloud Platforms</p>
             <p>Azure | AWS | Hyper-V</p>
             <div class="footer-icons">
                 <i class="fab fa-microsoft"></i>
@@ -704,6 +876,9 @@
                 'intro-title': 'Introduction',
                 'intro-text': 'In today\'s digital era, virtualization and cloud computing solutions have become fundamental pillars for the digital transformation of businesses. This presentation analyzes three of the most relevant platforms in the market: Azure, AWS, and Hyper-V.',
                 
+                // About Us
+                'about-title': 'About Us',
+                
                 // Azure features
                 'azure-feature-1': 'Scalable computing services',
                 'azure-feature-2': 'Secure cloud storage',
@@ -753,7 +928,7 @@
                 'hyperv-use-cases': 'Virtualization in Windows environments',
                 
                 // Footer
-                'footer-text': 'Support material for presentation - Virtualization and Cloud Platforms',
+                'footer-text': 'Material for presentation - Virtualization and Cloud Platforms',
                 
                 // Buttons
                 'view-details': 'View Details'
@@ -766,6 +941,9 @@
                 // Introduction
                 'intro-title': 'Introducción',
                 'intro-text': 'En la era digital actual, las soluciones de virtualización y computación en la nube se han convertido en pilares fundamentales para la transformación digital de las empresas. Esta exposición analiza tres de las plataformas más relevantes en el mercado: Azure, AWS y Hyper-V.',
+                
+                // About Us
+                'about-title': 'Nuestro Equipo',
                 
                 // Azure features
                 'azure-feature-1': 'Servicios de computación escalables',
@@ -816,7 +994,7 @@
                 'hyperv-use-cases': 'Virtualización en entornos Windows',
                 
                 // Footer
-                'footer-text': 'Material de apoyo para exposición - Plataformas de Virtualización y Nube',
+                'footer-text': ' Plataformas de Virtualización y Nube',
                 
                 // Buttons
                 'view-details': 'Ver detalles'
@@ -878,7 +1056,7 @@
 
         // Animation on scroll
         document.addEventListener('DOMContentLoaded', function() {
-            const elements = document.querySelectorAll('.service-card, .intro, .comparison');
+            const elements = document.querySelectorAll('.service-card, .intro, .comparison, .member-card');
             
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
