@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exposición: Azure, AWS y Hyper-V</title>
+    <style>
+        /* Variables de colores y estilos */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --azure-color: #0078d4;
+            --aws-color: #ff9900;
+            --hyperv-color: #68217a;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Encabezado */
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 0 0 20px 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Sección de introducción */
+        .intro {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .intro h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .intro p {
+            font-size: 1.1rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Tarjetas de servicios */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .azure .card-header {
+            background-color: var(--azure-color);
+        }
+
+        .aws .card-header {
+            background-color: var(--aws-color);
+        }
+
+        .hyperv .card-header {
+            background-color: var(--hyperv-color);
+        }
+
+        .card-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        .card-body ul {
+            list-style-type: none;
+            margin-bottom: 20px;
+        }
+
+        .card-body li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .card-body li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .card-footer {
+            padding: 15px 25px 25px;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: var(--transition);
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-color);
+        }
+
+        /* Comparativa */
+        .comparison {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 50px;
+        }
+
+        .comparison h2 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: var(--light-color);
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .azure-row {
+            border-left: 4px solid var(--azure-color);
+        }
+
+        .aws-row {
+            border-left: 4px solid var(--aws-color);
+        }
+
+        .hyperv-row {
+            border-left: 4px solid var(--hyperv-color);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 20px 20px 0 0;
+            margin-top: 50px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .intro h2, .comparison h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Plataformas de Virtualización y Nube</h1>
+            <p>Una comparativa entre Microsoft Azure, Amazon Web Services y Hyper-V</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="intro">
+            <h2>Introducción</h2>
+            <p>En la era digital actual, las soluciones de virtualización y computación en la nube se han convertido en pilares fundamentales para la transformación digital de las empresas. Esta exposición analiza tres de las plataformas más relevantes en el mercado: Azure, AWS y Hyper-V.</p>
+        </section>
+
+        <section class="services-grid">
+            <!-- Tarjeta Azure -->
+            <div class="service-card azure">
+                <div class="card-header">
+                    <h3>Microsoft Azure</h3>
+                    <p>Plataforma de nube de Microsoft</p>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Servicios de computación escalables</li>
+                        <li>Almacenamiento en la nube seguro</li>
+                        <li>Inteligencia Artificial y Machine Learning</li>
+                        <li>Integración con herramientas Microsoft</li>
+                        <li>Soluciones híbridas</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="btn" onclick="showDetails('azure')">Ver más detalles</a>
+                </div>
+            </div>
+
+            <!-- Tarjeta AWS -->
+            <div class="service-card aws">
+                <div class="card-header">
+                    <h3>Amazon Web Services</h3>
+                    <p>Plataforma de nube de Amazon</p>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Amplia gama de servicios</li>
+                        <li>Alta disponibilidad y escalabilidad</li>
+                        <li>Modelo de precios flexible</li>
+                        <li>Ecosistema maduro y documentación extensa</li>
+                        <li>Liderazgo en el mercado IaaS</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="btn" onclick="showDetails('aws')">Ver más detalles</a>
+                </div>
+            </div>
+
+            <!-- Tarjeta Hyper-V -->
+            <div class="service-card hyperv">
+                <div class="card-header">
+                    <h3>Hyper-V</h3>
+                    <p>Hypervisor de Microsoft</p>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>Virtualización de servidores</li>
+                        <li>Integrado en Windows Server</li>
+                        <li>Gestión centralizada con System Center</li>
+                        <li>Replica y migración en vivo</li>
+                        <li>Compatibilidad con Linux y Windows</li>
+                    </ul>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="btn" onclick="showDetails('hyperv')">Ver más detalles</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="comparison">
+            <h2>Comparativa de Plataformas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Característica</th>
+                        <th>Azure</th>
+                        <th>AWS</th>
+                        <th>Hyper-V</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="azure-row">
+                        <td>Tipo de servicio</td>
+                        <td>Nube pública/híbrida</td>
+                        <td>Nube pública</td>
+                        <td>Virtualización local</td>
+                    </tr>
+                    <tr class="aws-row">
+                        <td>Modelo de precios</td>
+                        <td>Pago por uso</td>
+                        <td>Pago por uso</td>
+                        <td>Licencias por servidor</td>
+                    </tr>
+                    <tr class="hyperv-row">
+                        <td>Escalabilidad</td>
+                        <td>Alta</td>
+                        <td>Alta</td>
+                        <td>Media (depende del hardware)</td>
+                    </tr>
+                    <tr class="azure-row">
+                        <td>Integración con ecosistema</td>
+                        <td>Excelente con Microsoft</td>
+                        <td>Amplia con servicios AWS</td>
+                        <td>Excelente con Windows</td>
+                    </tr>
+                    <tr class="aws-row">
+                        <td>Casos de uso principales</td>
+                        <td>Empresas Microsoft, soluciones híbridas</td>
+                        <td>Startups, empresas tecnológicas</td>
+                        <td>Virtualización en entornos Windows</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Material de apoyo para exposición - Plataformas de Virtualización y Nube</p>
+            <p>Azure | AWS | Hyper-V</p>
+        </div>
+    </footer>
+
+    <script>
+        function showDetails(platform) {
+            let message = "";
+            
+            switch(platform) {
+                case 'azure':
+                    message = "Microsoft Azure es la plataforma de computación en la nube de Microsoft, que ofrece una amplia gama de servicios que incluyen computación, análisis, almacenamiento y redes.";
+                    break;
+                case 'aws':
+                    message = "Amazon Web Services (AWS) es la plataforma de nube más adoptada y completa en el mundo, ofreciendo más de 200 servicios completos desde centros de datos a nivel global.";
+                    break;
+                case 'hyperv':
+                    message = "Hyper-V es la tecnología de virtualización basada en hypervisor de Microsoft. Permite crear y ejecutar una versión de software de un equipo, llamado máquina virtual.";
+                    break;
+            }
+            
+            alert(message);
+        }
+
+        // Efecto de aparición suave al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            const elements = document.querySelectorAll('.service-card, .intro, .comparison');
+            
+            elements.forEach((element, index) => {
+                setTimeout(() => {
+                    element.style.opacity = '0';
+                    element.style.transform = 'translateY(20px)';
+                    element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    
+                    setTimeout(() => {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 200);
+            });
+        });
+    </script>
+</body>
+</html>
